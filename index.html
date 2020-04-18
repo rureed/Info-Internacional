@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+</head>
+
+<body>
+    <div class="bg-dark pt-2 pb-2">
+        <div class="container">
+            <h1 style="text-align: center;">Project Prototype</h1>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 bg-light pt-3 pb-3">
+
+                    <h5>Search for a city:</h5>
+
+                    <div class="input-group mb-3">
+                        <input id="searchTerm" type="text" class="form-control" placeholder="City name...">
+
+                        <button id="searchBtn" type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+
+
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+                    <script
+                        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+                    <script>
+                        var api = "9e8c124e933b40728ba4e67ce0248f18"
+
+
+                        var settings = {
+                            "async": true,
+                            "crossDomain": true,
+                            "url": "https://restcountries-v1.p.rapidapi.com/all",
+                            "method": "GET",
+                            "headers": {
+                                "x-rapidapi-host": "restcountries-v1.p.rapidapi.com",
+                                "x-rapidapi-key": "76f291aa43mshfb99c1afda32c2dp1ad6edjsn1bb14c6f5ae2"
+                            }
+                        }
+
+                        $.ajax(settings).done(function (response) {
+                            console.log(response);
+                        });
+
+
+
+                        // < img src="https://www.countryflags.io/:country_code/:style/:size.png">
+
+                    </script>
+
+</body>
+
+</html>
