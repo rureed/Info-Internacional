@@ -9,16 +9,33 @@
     <title>Capital Cities</title>
 </head>
 <body>
-  <header>   
-      <ul class="collection with-header">
-          <li class="collection-header"><span class = "center-align>" id = "headerTitle"><h2>Capital Cities</h2></span class = "right-align>" id = "currentDate"><span class = "right-align>" id = "currentDate">Current Date Here</span></li>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Capital Cities</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><h5 id = "dateTime">Current Date and Time</h5></li>
       </ul>
+    </div>
+  </nav>
+
+  <header>   
+          <h5 id = "capital" class = "center-align">Searched Capital Appears Here</h5>
   </header> 
 
-  <div class="input-field col s6">
-    <input id="country" type="text" class="validate">
-    <label for="searchTerm">Search Term</label>
-  </div>
+  <form>
+    <div class="input-field inline">
+      <button class="btn waves-effect waves-light" id = "search" type="submit" name="action">Search
+      </button>
+    </div>
+    <div class="input-field inline col m3">
+      <input id="countryInput" type="text" class="validate" placeholder = "Search a country">
+    </div>
+  </form>
+  
+  <span id = "errorMadeArea">Please check the spelling of the country.</span>
+        
+
+  
 
     <div class="row">
         <div class="col s12 m6">
@@ -35,12 +52,17 @@
           </div>
         </div>
         <div class="col s12 m6">
-          <div id = "weatherAndTime" class = "card">
-            <div class = "card">
-              <div class = "card-content" id = "weather">
-                <h3>Weather Content</h3>
-              </div>
-            </div>
+         
+              <section class = "card" id = "fullWeather">
+                    <h4 id = "weather">
+                        <span id = "capitalName"></span>
+                        <span id = "date">date</span>
+                        <img id="mainIcon" src="" alt="Weather icon">
+                    </h4>
+                    <p class = "card-text"><h5>Temperature: <span id = "temp"></span>&deg; F</h5></p>                   
+              </section>
+            
+            
             <div class = "card">
               <div class = "card-content" id = "timeZone">
                 <h3>Time Zone Info</h3>
@@ -57,118 +79,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script type="text/javascript">
-
-
-
-$('.carousel').carousel();
- 
-
-$("#country").on("click", function(event){
-  event.preventDefault();
-  var country = $("#country").val().trim().toLowerCase();
-  if (country) {
-        $("#country").val("");
-    } 
-    getCountryInfo(country);
-}) 
-
-
-function getCountryInfo(country){
-  var settings = {
-	"async": true,
-	"crossDomain": true,
-	"url": "https://restcountries-v1.p.rapidapi.com/all",
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "restcountries-v1.p.rapidapi.com",
-		"x-rapidapi-key": "52dbb116femsh414adea3d2d39b0p1baee8jsn399515d8751e"
-	}
-}
-$.ajax(settings).done(function (response) {
-  
-  console.log(response);
-    for (var i = 0; i < response.length; i++) {
-      var countryMatch = (response[i].name).toLowerCase();
-
-      if (country === countryMatch){
-        var capital = response[i].capital;
-        var timezone = response[i].timezones[0];
-
-        //call weather API and picture API with capital
-        //call timezone function with timezone
-      }
-    }
-    getPictures(capital);
-
-});
-  
-  //getWeather(capital);
-  //getForecast(capital);
-  //showTimezones(timezone);
-}
-
-//searched for picture based on the capital
-function getPictures(capital){
-    var queryURL = "https://api.unsplash.com/search/photos?query=" + capital + "&client_id=tLFvPdAvAFpRTR2LhyEwk38gT8ALPvluLPQTUjttXfc"
-
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(function(response){
-      console.log(response);
-      
-      var picList = response.results;
-      showPictures(picList);
-    })
-}
-
-//shows pictures in a carousel
-function showPictures(picList){
-  
-  var count = 1;
-  for (var i = 0; i < 6; i++){
-    var picWidth = picList[i].width;
-    var picHeight = picList[i].height;
-    if(picWidth > picHeight){
-      var picURL = picList[i].urls.regular;
-      $("#pic-" + count).attr("src", picURL );
-      count++;
-    }
-    
-  }
-}
-/* 
-//openweathermap API 
-function getWeather(){
-
-  showWeather();
-}
-
-function showWeather(){
-
-}
-
-
-function getForecast(){
-
-  showForecast();
-}
-
-function showForecast(){
-
-}
-
-
-function showTimezone(timezone){
-
-} */
- 
- 
-
-
-
-</script>
+<script src = "script.js" type = "text/javascript"></script>
     
 </body>
 </html>
