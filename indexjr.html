@@ -6,13 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel = "stylesheet" href= "style.css">
-    <title>Travel Buddy</title>
+    <title>Capital Cities</title>
 </head>
 <body>
   <header>   
       <ul class="collection with-header">
-          <li class="collection-header"><span class = "left-align>" id = "headerTitle"><h4>Travel Buddy</h4></span class = "right-align>" id = "currentDate"><span class = "right-align>" id = "currentDate"><h6>Current Date Here</h6></span></li>
-          
+          <li class="collection-header"><span class = "center-align>" id = "headerTitle"><h2>Capital Cities</h2></span class = "right-align>" id = "currentDate"><span class = "right-align>" id = "currentDate">Current Date Here</span></li>
       </ul>
   </header> 
 
@@ -26,14 +25,11 @@
           <div class="card">
             <div class="card-image">
                 <div class="carousel">
-                    <a class="carousel-item" href="#one!"><img id = "image1"></a>
-                    <a class="carousel-item" href="#two!"><img id = "image2"></a>
-                    <a class="carousel-item" href="#three!"><img id = "image3"></a>
-                    <a class="carousel-item" href="#four!"><img id = "image4"></a>
-                    <a class="carousel-item" href="#five!"><img id = "image5"></a>
-                    <a class="carousel-item" href="#six!"><img id = "image6"></a>
-                    <a class="carousel-item" href="#seven!"><img id = "image7"></a>
-                    <a class="carousel-item" href="#eight!"><img id = "image8"></a>
+                    <a class="carousel-item" href="#one!"><img id = "pic-1"></a>
+                    <a class="carousel-item" href="#two!"><img id = "pic-2"></a>
+                    <a class="carousel-item" href="#three!"><img id = "pic-3"></a>
+                    <a class="carousel-item" href="#four!"><img id = "pic-4"></a>
+                    <a class="carousel-item" href="#five!"><img id = "pic-5"></a>
                 </div>
             </div>
           </div>
@@ -99,24 +95,17 @@ $.ajax(settings).done(function (response) {
         var capital = response[i].capital;
         var timezone = response[i].timezones[0];
 
-      
-        console.log(capital);
-        console.log(timezone);
-
         //call weather API and picture API with capital
         //call timezone function with timezone
       }
-
     }
-
- 
+    getPictures(capital);
 
 });
-  getPictures(capital);
-  getWeather(capital);
-  getForecast(capital);
-  showTimezones(timezone);
   
+  //getWeather(capital);
+  //getForecast(capital);
+  //showTimezones(timezone);
 }
 
 //searched for picture based on the capital
@@ -128,19 +117,28 @@ function getPictures(capital){
       method: "GET"
     }).then(function(response){
       console.log(response);
+      
+      var picList = response.results;
+      showPictures(picList);
     })
 }
 
 //shows pictures in a carousel
-function showPictures(response){
+function showPictures(picList){
   
   var count = 1;
-  for (var i = 0; i < pictures.length; i++){
-    $("#image" + count).attr("src", )
+  for (var i = 0; i < 6; i++){
+    var picWidth = picList[i].width;
+    var picHeight = picList[i].height;
+    if(picWidth > picHeight){
+      var picURL = picList[i].urls.regular;
+      $("#pic-" + count).attr("src", picURL );
+      count++;
+    }
+    
   }
-      $("#practiceImage").attr("src", photoURL );
 }
-
+/* 
 //openweathermap API 
 function getWeather(){
 
@@ -162,10 +160,9 @@ function showForecast(){
 }
 
 
-
 function showTimezone(timezone){
 
-}
+} */
  
  
 
