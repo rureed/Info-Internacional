@@ -1,6 +1,11 @@
 $('.carousel').carousel();
  
 
+
+$(window).on( "load", function() {
+ 
+});
+
 $("#search").on("click", function(event){
   event.preventDefault();
 
@@ -10,7 +15,6 @@ $("#search").on("click", function(event){
     } 
     getCountryInfo(country);
 }) 
-
 
 function getCountryInfo(country){
   var settings = {
@@ -51,7 +55,7 @@ $.ajax(settings).done(function (response) {
 
 //searched for picture based on the capital
 function getPictures(capital){
-    var queryURL = "https://api.unsplash.com/search/photos?query=" + capital + "&client_id=tLFvPdAvAFpRTR2LhyEwk38gT8ALPvluLPQTUjttXfc"
+    var queryURL = "https://api.unsplash.com/search/photos?query=" + capital + "&per_page=20&client_id=tLFvPdAvAFpRTR2LhyEwk38gT8ALPvluLPQTUjttXfc"
 
     $.ajax({
       url: queryURL,
@@ -67,9 +71,9 @@ function getPictures(capital){
 
 //shows pictures in a carousel
 function showPictures(picList){
-  console.log(picList);
+ // console.log(picList);
   var count = 1;
-  for (var i = 0; i < 10; i++){
+  for (var i = 0; i < 20; i++){
     var picWidth = picList[i].width;
     var picHeight = picList[i].height;
     if(picWidth > picHeight){
@@ -90,6 +94,7 @@ function showPictures(picList){
         url: currentQueryURL,
         method: "GET"
     }).then(function(response){
+      console.log(response);
        showWeather(response);
        
         
@@ -107,7 +112,6 @@ function showWeather(response){
     //console.log(response);
     $("#capitalCity").text(response.name)
     var currentDate = moment().format("MM/DD/YY"); 
-    $("#currentDate").text("(" + currentDate + ")");
     $("#date").text("(" + currentDate + ")");
     var icon = response.weather[0].icon;
     var iconURL = "http://openweathermap.org/img/w/" + icon + ".png";
@@ -127,7 +131,26 @@ function showForecast(){
 }
 
 function showTimezone(timezone){
+  var timezone = timezone.split("");
+  timezone.splice(0,3);
+  timezone.splice(3,3);
+ 
+ 
+  
   console.log(timezone);
+  
+
+
+  var currentTime = moment().format('LTS');
+  $("#currentTimeZone").text(currentTime);
+  
+  //console.log(currentTime);
+  
 } 
+
+function showDateTime (){
+  $("#dateTime").text(moment().format('MMMM Do YYYY, h:mm:ss a'));
+}
+showDateTime();
 
  

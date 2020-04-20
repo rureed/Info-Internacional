@@ -9,69 +9,76 @@
     <title>Capital Cities</title>
 </head>
 <body>
-  <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Capital Cities</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><h5 id = "dateTime">Current Date and Time</h5></li>
-      </ul>
-    </div>
-  </nav>
-
-  <header>   
-          <h5 id = "capital" class = "center-align">Searched Capital Appears Here</h5>
-  </header> 
-
-  <form>
-    <div class="input-field inline">
-      <button class="btn waves-effect waves-light" id = "search" type="submit" name="action">Search
-      </button>
-    </div>
-    <div class="input-field inline col m3">
-      <input id="countryInput" type="text" class="validate" placeholder = "Search a country">
-    </div>
-  </form>
-  
-  <span id = "errorMadeArea">Please check the spelling of the country.</span>
-        
-
-  
-
-    <div class="row">
-        <div class="col s12 m6">
-          <div class="card">
-            <div class="card-image">
-                <div class="carousel">
-                    <a class="carousel-item" href="#one!"><img id = "pic-1"></a>
-                    <a class="carousel-item" href="#two!"><img id = "pic-2"></a>
-                    <a class="carousel-item" href="#three!"><img id = "pic-3"></a>
-                    <a class="carousel-item" href="#four!"><img id = "pic-4"></a>
-                    <a class="carousel-item" href="#five!"><img id = "pic-5"></a>
-                </div>
-            </div>
-          </div>
-        </div>
-        <div class="col s12 m6">
-         
-              <section class = "card" id = "fullWeather">
-                    <h4 id = "weather">
-                        <span id = "capitalName"></span>
-                        <span id = "date">date</span>
-                        <img id="mainIcon" src="" alt="Weather icon">
-                    </h4>
-                    <p class = "card-text"><h5>Temperature: <span id = "temp"></span>&deg; F</h5></p>                   
-              </section>
-            
-            
-            <div class = "card">
-              <div class = "card-content" id = "timeZone">
-                <h3>Time Zone Info</h3>
-                
-              </div>
-            </div>
-          </div>
-        </div>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Capital Cities</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><h5 id = "dateTime"></h5></li>
+        </ul>
       </div>
+    </nav>
+
+    <header class = "header">   
+            <h5 id = "capital" class = "center-align">Searched Capital Appears Here</h5>
+    </header> 
+
+    <section id = "searchSection">
+      <form>
+        <div class="input-field inline">
+          <button class="btn waves-effect waves-light" id = "search" type="submit" name="action">Search
+          </button>
+        </div>
+        <div class="input-field inline col m">
+          <input id="countryInput" type="text" class="validate" placeholder = "Search a country">
+        </div>
+      </form>
+      <span id = "errorMadeArea">Please check the spelling of the country.</span>
+    </section>        
+
+  
+  <main class = "container">
+
+    <section class="row">
+
+      <section class="col s12 m8" id = "pictures">
+        <div class="card">
+          <div class="card-image">
+              <div class="carousel">
+                  <a class="carousel-item" href="#one!"><img id = "pic-1"></a>
+                  <a class="carousel-item" href="#two!"><img id = "pic-2"></a>
+                  <a class="carousel-item" href="#three!"><img id = "pic-3"></a>
+                  <a class="carousel-item" href="#four!"><img id = "pic-4"></a>
+                  <a class="carousel-item" href="#five!"><img id = "pic-5"></a>
+                  <a class="carousel-item" href="#six!"><img id = "pic-6"></a>
+                  <a class="carousel-item" href="#seven!"><img id = "pic-7"></a>
+                  <a class="carousel-item" href="#eight!"><img id = "pic-8"></a>
+                  <a class="carousel-item" href="#nine!"><img id = "pic-9"></a>
+              </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="col s12 m4">
+        <section class = "card" id = "fullWeather">
+          <div class = "card-content">
+            <h4><span id = "date">date</span></h4><img id="mainIcon" src="" alt="Weather icon">
+            <p class = "card-text"><h5>Temp: <span id = "temp"></span>&deg; F</h5></p>                   
+          </div>
+        </section>
+
+        <section class = "card" id = "timeZone">
+          <div class = "card-content">
+              <h5>Current Local Time: <span id = "currentTimeZone"></span></h5>
+              <h5>Capital Time: <span id = "capitalTimeZone"></span></h5>
+              <h5>Hours Difference: <span id = "hoursDiff"></span></h5>
+          </div>
+        </section>
+      </section>
+
+    </section>
+
+  </main>
+        
 
 
 
