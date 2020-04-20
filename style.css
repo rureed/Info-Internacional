@@ -1,0 +1,16 @@
+body {
+    background-color: rgb(153, 174, 192);
+}
+
+.nav-wrapper {
+    background-color: rgba(86, 150, 111, 0.753);
+}
+
+.card {
+    border-radius: 10px;
+    background-color: bisque;
+}
+
+.btn {
+    background-color: rgba(167, 100, 167, 0.801);
+}
