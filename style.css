@@ -21,12 +21,19 @@ body {
 }
 
 .card {
-    border-radius: 10px;
-    background-color: bisque;
-    
+    border-radius: 8px;
+    background-color: bisque;   
 }
 
+.card-content {
+    padding: 5px 15px 15px 15px !important;
+}
 
+.card-image {
+    position: relative;
+    right: 80px;
+    bottom: 40px;
+}
 
 h1, h4, h5 {
     font-weight: bold;
@@ -34,17 +41,12 @@ h1, h4, h5 {
 
 .btn {
     background-color: rgba(167, 100, 167, 0.801);
+    
 }
 .btn:hover {
     background-color: rgba(86, 150, 111, 0.753);
     border-color: rgba(86, 150, 111, 0.753);
 }
-
-
-
-
-
-
 
 .modal {
     border-radius: 10px;

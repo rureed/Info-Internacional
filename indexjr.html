@@ -42,29 +42,31 @@
     <section class="row">
 
       <section class="col s12 m8" id = "pictures">
-        <section class="card">
-          <div class="card-image">
-              <div class="carousel" numVisible = "5">
-                  <a class="carousel-item" href="#one!"><img id = "pic-1"></a>
-                  <a class="carousel-item" href="#two!"><img id = "pic-2"></a>
-                  <a class="carousel-item" href="#three!"><img id = "pic-3"></a>
-                  <a class="carousel-item" href="#four!"><img id = "pic-4"></a>
-                  <a class="carousel-item" href="#five!"><img id = "pic-5"></a>
-                  <a class="carousel-item" href="#six!"><img id = "pic-6"></a>
-                  <a class="carousel-item" href="#seven!"><img id = "pic-7"></a>
-                  <a class="carousel-item" href="#eight!"><img id = "pic-8"></a>
-                  <a class="carousel-item" href="#nine!"><img id = "pic-9"></a>
-                  <a class="carousel-item" href="#ten!"><img id = "pic-10"></a>
-                  <a class="carousel-item" href="#eleven!"><img id = "pic-11"></a>
-              </div>
-          </div>
+        <section class="card show-on-medium-and-up">
+            <div class=" card-image carousel show-on-medium-and-up">
+                <a class="carousel-item" href="#one!"><img id = "pic-1"></a>
+                <a class="carousel-item" href="#two!"><img id = "pic-2"></a>
+                <a class="carousel-item" href="#three!"><img id = "pic-3"></a>
+                <a class="carousel-item" href="#four!"><img id = "pic-4"></a>
+                <a class="carousel-item" href="#five!"><img id = "pic-5"></a>
+                <a class="carousel-item" href="#six!"><img id = "pic-6"></a>
+                <a class="carousel-item" href="#seven!"><img id = "pic-7"></a>
+                <a class="carousel-item" href="#eight!"><img id = "pic-8"></a>
+                <a class="carousel-item" href="#nine!"><img id = "pic-9"></a>
+                <a class="carousel-item" href="#ten!"><img id = "pic-10"></a>
+                <a class="carousel-item" href="#eleven!"><img id = "pic-11"></a>
+            </div>
+            
         </section>
       </section>
 
       <section class="col s12 m4">
-        <section class = "card center-align">
+        <section class = "card center-align" id = "weatherCard">
           <div class = "card-content">
-            <h4><span id = "date">date</span></h4><img id="mainIcon" src="" alt="Weather icon">
+            <h5>Current Weather in Capital City:</h5>
+          </div>
+          <div class = "card-content">
+            <h4><span id = "date"></span></h4><img id="mainIcon" src="">
             <p class = "card-text"><h5>Temp: <span id = "temp"></span>&deg; F</h5></p>                   
           </div>
           <div class = "card-content">
@@ -102,11 +104,10 @@
           </div>
         </section>
 
-        <section class = "card" id = "timeZone">
+        <section class = "card" id = "timeCard">
           <div class = "card-content">
-              <h5>Current Local Time: <span id = "currentTimeZone"></span></h5>
-              <h5>Capital Time: <span id = "capitalTime"></span></h5>
-              <h5>Hours Difference: <span id = "hoursDiff"></span></h5>
+              <h5>Current Local Time: <span id = "currentTimeZone"> </span></h5>
+              <h5>Current Time in Capital: <span id = "capitalTime"> </span></h5>
           </div>
         </section>
       </section>
