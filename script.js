@@ -29,27 +29,30 @@ function getCountryInfo(country){
 }
 $.ajax(settings).done(function (response) {
   
-  //console.log(response);
+  console.log(response);
     for (var i = 0; i < response.length; i++) {
       var countryMatch = (response[i].name).toLowerCase();
-
+      var region = response[i].region;
+      var capital = response[i].capital.replace(" ", "_");
+      
       if (country === countryMatch){
         var capital = response[i].capital;
-        var timezone = response[i].timezones[0];
+        $("#capital").text(capital + ", " + response[i].name);
+  
 
-
-        //call weather API and picture API with capital
-        //call timezone function with timezone
+        getPictures(capital);
+        getWeather(capital);
+        getForecast(capital);
+        
       }
+
     }
-    getPictures(capital);
-    getWeather(capital);
-    showTimezone(timezone);
+   
 
 });
   
   
-  //getForecast(capital);
+
  
 }
 
@@ -71,7 +74,7 @@ function getPictures(capital){
 
 //shows pictures in a carousel
 function showPictures(picList){
- // console.log(picList);
+ console.log(picList);
   var count = 1;
   for (var i = 0; i < 20; i++){
     var picWidth = picList[i].width;
@@ -79,6 +82,7 @@ function showPictures(picList){
     if(picWidth > picHeight){
       var picURL = picList[i].urls.regular;
       $("#pic-" + count).attr("src", picURL );
+      $("#pic-" + count).addClass("sizeIt");
       count++;
     }
   }
@@ -94,8 +98,9 @@ function showPictures(picList){
         url: currentQueryURL,
         method: "GET"
     }).then(function(response){
-      console.log(response);
+      var timeZone = (response.timezone)/60/60;
        showWeather(response);
+       showTimezone(timeZone);
        
         
     }).catch(function(){
@@ -121,36 +126,55 @@ function showWeather(response){
 }
 
 
-function getForecast(){
-
-  showForecast();
+function getForecast(capital){
+  var forecastQueryURL= "http://api.openweathermap.org/data/2.5/forecast?q=" + capital + "&APPID=62fca606199df2afea0a32e25faffdc5";;
+    $.ajax({
+        url:forecastQueryURL,
+        method: "GET"
+    }).then(showForecast)
 }
 
-function showForecast(){
+function showForecast(forecastResponse){
+  var list = forecastResponse.list;
+  var count = 1;   
+  for (var i = 0; i < list.length; i++){
+ 
+      if (list[i].dt_txt.includes("15:00:00")) {
+         
+         $("#date-"+ count).text(new Date(list[i].dt_txt).toLocaleDateString());
+         
+         var iconURL = "http://openweathermap.org/img/w/" + list[i].weather[0].icon + ".png";
+         $("#icon-"+ count).attr("src", iconURL);
 
+         $("#temp-"+ count).text(((list[i].main.temp- 273.15) * 1.80 +32).toFixed(0));
+         
+         count++; 
+      }
+  }
 }
 
-function showTimezone(timezone){
-  var timezone = timezone.split("");
-  timezone.splice(0,3);
-  timezone.splice(3,3);
- 
- 
-  
-  console.log(timezone);
-  
 
+function showTimezone(timeZone){
+  console.log(timeZone);
+  var capitalTime = moment().utcOffset(timeZone).format('h:mm A');
+  $("#capitalTime").text(capitalTime);
+  console.log(capitalTime);
 
-  var currentTime = moment().format('LTS');
+  var currentTime = moment().format('LT');
   $("#currentTimeZone").text(currentTime);
+}
   
-  //console.log(currentTime);
   
-} 
+
+
+  
+  
+
+  
 
 function showDateTime (){
   $("#dateTime").text(moment().format('MMMM Do YYYY, h:mm:ss a'));
 }
 showDateTime();
 
- 
+$('#modal1').modal();
