@@ -2,15 +2,59 @@ body {
     background-color: rgb(153, 174, 192);
 }
 
+
+
+
+
+.container {
+    width: 100%;
+}
 .nav-wrapper {
     background-color: rgba(86, 150, 111, 0.753);
 }
 
+.brand-logo {
+    margin-left: 10px;
+}
+
+#dateTime {
+    margin-right: 10px;
+}
+
+#pictures {
+    height: 100%;
+}
+
+
 .card {
-    border-radius: 10px;
-    background-color: bisque;
+    border-radius: 8px;
+    background-color: bisque;   
+}
+
+.card-content {
+    padding: 5px 15px 15px 15px !important;
+}
+
+h1, h4, h5 {
+    font-weight: bold;
+}
+
+.timeFonts {
+    font-size: 18px;
 }
 
 .btn {
     background-color: rgba(167, 100, 167, 0.801);
+    
+}
+.btn:hover {
+    background-color: rgba(86, 150, 111, 0.753);
+    border-color: rgba(86, 150, 111, 0.753);
+}
+
+.modal {
+    border-radius: 10px;
+    background-color: rgba(167, 100, 167, 0.801);
+    color: white;
+    width: 300px; 
 }

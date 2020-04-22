@@ -1,9 +1,15 @@
-$('.carousel').carousel();
+$('.carousel').carousel({
+  
+});
  
+//When the page loads the screen should be clear of any "errors"
+$(window).on( "load", function() {
+ 
+});
 
+//get the capital of the country the user types in
 $("#search").on("click", function(event){
   event.preventDefault();
-
   var country = $("#countryInput").val().trim().toLowerCase();
   if (country) {
         $("#countryInput").val("");
@@ -11,7 +17,7 @@ $("#search").on("click", function(event){
     getCountryInfo(country);
 }) 
 
-
+//get capital from api to search with
 function getCountryInfo(country){
   var settings = {
 	"async": true,
@@ -24,43 +30,30 @@ function getCountryInfo(country){
 	}
 }
 $.ajax(settings).done(function (response) {
-  
-  //console.log(response);
-    for (var i = 0; i < response.length; i++) {
-      var countryMatch = (response[i].name).toLowerCase();
+    console.log(response);
+  for (var i = 0; i < response.length; i++) {
+    var countryMatch = (response[i].name).toLowerCase(); 
+    if (country === countryMatch){
+      var capital = response[i].capital;
+      $("#capital").text(capital + ", " + response[i].name);
 
-      if (country === countryMatch){
-        var capital = response[i].capital;
-        var timezone = response[i].timezones[0];
-
-
-        //call weather API and picture API with capital
-        //call timezone function with timezone
-      }
+      getPictures(capital);
+      getWeather(capital);
+      getForecast(capital);
     }
-    getPictures(capital);
-    getWeather(capital);
-    showTimezone(timezone);
-
+    }
 });
-  
-  
-  //getForecast(capital);
- 
 }
 
 //searched for picture based on the capital
 function getPictures(capital){
-    var queryURL = "https://api.unsplash.com/search/photos?query=" + capital + "&client_id=tLFvPdAvAFpRTR2LhyEwk38gT8ALPvluLPQTUjttXfc"
+    var queryURL = "https://api.unsplash.com/search/photos?query=" + capital + "&per_page=20&client_id=tLFvPdAvAFpRTR2LhyEwk38gT8ALPvluLPQTUjttXfc"
 
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function(response){
-      //console.log(response);
-      
-      var picList = response.results;
-      
+      var picList = response.results;     
       showPictures(picList);
     })
 }
@@ -69,65 +62,92 @@ function getPictures(capital){
 function showPictures(picList){
   console.log(picList);
   var count = 1;
-  for (var i = 0; i < 10; i++){
+  for (var i = 0; i < 20; i++){
     var picWidth = picList[i].width;
     var picHeight = picList[i].height;
     if(picWidth > picHeight){
       var picURL = picList[i].urls.regular;
       $("#pic-" + count).attr("src", picURL );
+      $("#pic-" + count).addClass("responsive-img");
       count++;
     }
   }
 }
 
-//openweathermap API 
+//openweathermap API to get current weather for capital city
+function getWeather(capital) { 
+  $("#errorMadeArea").hide();   
+  var currentQueryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + capital + "&APPID=62fca606199df2afea0a32e25faffdc5";
 
-  function getWeather(capital) { 
-    $("#errorMadeArea").hide();   
-    var currentQueryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + capital + "&APPID=62fca606199df2afea0a32e25faffdc5";
-
-    $.ajax({
-        url: currentQueryURL,
-        method: "GET"
-    }).then(function(response){
-       showWeather(response);
-       
-        
-    }).catch(function(){
-        $("#errorMadeArea").show();
-    });
+  $.ajax({
+      url: currentQueryURL,
+      method: "GET"
+  }).then(function(response){
+    var timeZone = (response.timezone)/60/60;
+      showWeather(response);
+      showTimes(timeZone);
+      
+      
+  }).catch(function(){
+      $("#errorMadeArea").show();
+  });
 }
 $("#errorMadeArea").hide();   
 
-  
-
 
 function showWeather(response){
-    //Setting all the main current weather
-    //console.log(response);
-    $("#capitalCity").text(response.name)
-    var currentDate = moment().format("MM/DD/YY"); 
-    $("#currentDate").text("(" + currentDate + ")");
-    $("#date").text("(" + currentDate + ")");
-    var icon = response.weather[0].icon;
-    var iconURL = "http://openweathermap.org/img/w/" + icon + ".png";
-    $("#mainIcon").attr("src", iconURL);
-    var mainTemp = ((response.main.temp - 273.15) * 1.80 + 32).toFixed(0); 
-    $("#temp").text(mainTemp);   
+  $("#capitalCity").text(response.name)
+  var currentDate = moment().format("MM/DD/YY"); 
+  $("#date").text("(" + currentDate + ")");
+  var icon = response.weather[0].icon;
+  var iconURL = "https://openweathermap.org/img/w/" + icon + ".png";
+  $("#mainIcon").attr("src", iconURL);
+  var mainTemp = ((response.main.temp - 273.15) * 1.80 + 32).toFixed(0); 
+  $("#temp").text(mainTemp);   
+}
+
+function getForecast(capital){
+  var forecastQueryURL= "https://api.openweathermap.org/data/2.5/forecast?q=" + capital + "&APPID=62fca606199df2afea0a32e25faffdc5";;
+    $.ajax({
+        url:forecastQueryURL,
+        method: "GET"
+    }).then(showForecast)
 }
 
 
-function getForecast(){
-
-  showForecast();
-}
-
-function showForecast(){
-
-}
-
-function showTimezone(timezone){
-  console.log(timezone);
-} 
-
+function showForecast(forecastResponse){
+  var list = forecastResponse.list;
+  var count = 1;   
+  for (var i = 0; i < list.length; i++){
  
+    if (list[i].dt_txt.includes("15:00:00")) {
+        
+        $("#date-"+ count).text(new Date(list[i].dt_txt).toLocaleDateString());
+        
+        var iconURL = "https://openweathermap.org/img/w/" + list[i].weather[0].icon + ".png";
+        $("#icon-"+ count).attr("src", iconURL);
+
+        $("#temp-"+ count).text(((list[i].main.temp- 273.15) * 1.80 +32).toFixed(0));
+        
+        count++; 
+    }
+  }
+}
+
+
+//
+function showTimes(timeZone){
+  var capitalTime = moment().utcOffset(timeZone).format('h:mm A ' + ' / ' + 'MMMM Do');
+  $("#capitalTime").text(capitalTime);
+
+  var capHrs = moment().utcOffset(timeZone).format('h');
+  var currentHrs= moment().format('h');
+  console.log(capHrs);
+  console.log(currentHrs);
+  $("#dateTime").text(moment().format('MMMM Do YYYY, h:mm:ss a'));
+  $("#currentTimeZone").text(moment().format('LT'));
+
+}
+
+
+$('#modal1').modal();
