@@ -2,9 +2,10 @@ body {
     background-color: rgb(153, 174, 192);
 }
 
-.sizeIt {
-    min-width: 200%;
-}
+
+
+
+
 .container {
     width: 100%;
 }
@@ -20,6 +21,11 @@ body {
     margin-right: 10px;
 }
 
+#pictures {
+    height: 100%;
+}
+
+
 .card {
     border-radius: 8px;
     background-color: bisque;   
@@ -29,14 +35,12 @@ body {
     padding: 5px 15px 15px 15px !important;
 }
 
-.card-image {
-    position: relative;
-    right: 80px;
-    bottom: 40px;
-}
-
 h1, h4, h5 {
     font-weight: bold;
+}
+
+.timeFonts {
+    font-size: 18px;
 }
 
 .btn {
@@ -52,4 +56,5 @@ h1, h4, h5 {
     border-radius: 10px;
     background-color: rgba(167, 100, 167, 0.801);
     color: white;
+    width: 300px; 
 }

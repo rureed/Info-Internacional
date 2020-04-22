@@ -1,4 +1,6 @@
-$('.carousel').carousel();
+$('.carousel').carousel({
+  
+});
  
 //When the page loads the screen should be clear of any "errors"
 $(window).on( "load", function() {
@@ -58,6 +60,7 @@ function getPictures(capital){
 
 //shows pictures in a carousel
 function showPictures(picList){
+  console.log(picList);
   var count = 1;
   for (var i = 0; i < 20; i++){
     var picWidth = picList[i].width;
@@ -65,7 +68,7 @@ function showPictures(picList){
     if(picWidth > picHeight){
       var picURL = picList[i].urls.regular;
       $("#pic-" + count).attr("src", picURL );
-      $("#pic-" + count).addClass("sizeIt");
+      $("#pic-" + count).addClass("responsive-img");
       count++;
     }
   }
@@ -74,7 +77,7 @@ function showPictures(picList){
 //openweathermap API to get current weather for capital city
 function getWeather(capital) { 
   $("#errorMadeArea").hide();   
-  var currentQueryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + capital + "&APPID=62fca606199df2afea0a32e25faffdc5";
+  var currentQueryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + capital + "&APPID=62fca606199df2afea0a32e25faffdc5";
 
   $.ajax({
       url: currentQueryURL,
@@ -97,14 +100,14 @@ function showWeather(response){
   var currentDate = moment().format("MM/DD/YY"); 
   $("#date").text("(" + currentDate + ")");
   var icon = response.weather[0].icon;
-  var iconURL = "http://openweathermap.org/img/w/" + icon + ".png";
+  var iconURL = "https://openweathermap.org/img/w/" + icon + ".png";
   $("#mainIcon").attr("src", iconURL);
   var mainTemp = ((response.main.temp - 273.15) * 1.80 + 32).toFixed(0); 
   $("#temp").text(mainTemp);   
 }
 
 function getForecast(capital){
-  var forecastQueryURL= "http://api.openweathermap.org/data/2.5/forecast?q=" + capital + "&APPID=62fca606199df2afea0a32e25faffdc5";;
+  var forecastQueryURL= "https://api.openweathermap.org/data/2.5/forecast?q=" + capital + "&APPID=62fca606199df2afea0a32e25faffdc5";;
     $.ajax({
         url:forecastQueryURL,
         method: "GET"
@@ -121,7 +124,7 @@ function showForecast(forecastResponse){
         
         $("#date-"+ count).text(new Date(list[i].dt_txt).toLocaleDateString());
         
-        var iconURL = "http://openweathermap.org/img/w/" + list[i].weather[0].icon + ".png";
+        var iconURL = "https://openweathermap.org/img/w/" + list[i].weather[0].icon + ".png";
         $("#icon-"+ count).attr("src", iconURL);
 
         $("#temp-"+ count).text(((list[i].main.temp- 273.15) * 1.80 +32).toFixed(0));
@@ -134,7 +137,7 @@ function showForecast(forecastResponse){
 
 //
 function showTimes(timeZone){
-  var capitalTime = moment().utcOffset(timeZone).format('h:mm A');
+  var capitalTime = moment().utcOffset(timeZone).format('h:mm A ' + ' / ' + 'MMMM Do');
   $("#capitalTime").text(capitalTime);
 
   var capHrs = moment().utcOffset(timeZone).format('h');
