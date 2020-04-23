@@ -10,16 +10,17 @@
 </head>
 <body>
 
-    <nav>
-      <div class="nav-wrapper">
-        <a href="#" class="brand-logo">Capital Cities</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><h5 id = "dateTime"></h5></li>
-        </ul>
-      </div>
-    </nav>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Capital Cities</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><h5 id = "dateTime"></h5></li>
+      </ul>
+    </div>
+  </nav>
 
-    <main class = "container">
+  <main class = "container">
+   
     <header class = "header">   
             <h3 id = "capital" class = "center-align"></h3>
     </header> 
@@ -37,10 +38,8 @@
       <span id = "errorMadeArea">Please check the spelling of the country.</span>
     </section>        
 
-  
-  
 
-    <section class="row ">
+    <section class="row">
 
       <section class="col s12 m12" id = "pictures">
         <section class = "card">
@@ -61,70 +60,73 @@
       </section>
     </section>
 
-    <section class = "row card center-align" id = "weatherTime">
+    <section class = "card" id = "weatherTime">
+      <h3 class="row">Currently in the Capital</h3>
       
-        <section class="col s12 m3">
-          <section class = "card-content" id = "weatherCard">
-              <h5>Current Weather in Capital City:</h5>
-          </section>
-            
-          <div class = "card-content">
-              <h4><span id = "date"></span></h4><img id="mainIcon" src="">
-              <p class = "card-text"><h5>Temp: <span id = "temp"></span>&deg; F</h5></p>                   
-          </div>
+      <section class = "row">
+        <div class="card-content col s12 m4" id = "weatherCard">
+            <h5>Current Weather in Capital City:</h5>
+            <h4><span id = "date"></span></h4><img id="mainIcon" src="">
+            <p class = "card-text"><h4>Temp: <span id = "temp"></span>&deg; F</h3></p>
+        </div>
 
-          <div class = "card-content">
-            <button data-target="modal1" class="btn modal-trigger">3-Day Forecast</button>
-            <div id="modal1" class="modal">
-              <div class="modal-content">
-                <h4>Forecast</h4>
-                <div class = "card">
-                  <div class = "card-content">
-                    <h4 id = "date-1"></h4>
-                    <img id = "icon-1"></img>
-                    <h5>Temp:<span id = "temp-1"></span>&deg; F </h5>
-                  </div>
-                </div>
-                <div class = "card">
-                  <div class = "card-content">
-                    <h4 id = "date-2"></h4>
-                    <img id = "icon-2"></img>
-                    <h5>Temp:<span id = "temp-2"></span>&deg; F </h5>
-                  </div>
-                </div>
-                <div class = "card">
-                  <div class = "card-content">
-                    <h4 id = "date-3"></h4>
-                    <img id = "icon-3"></img>
-                    <h5>Temp:<span id = "temp-3"></span>&deg; F </h5>
-                  </div>
+        <div class = "card-content">
+          <button data-target="modal1" class="btn modal-trigger">3-Day Forecast</button>
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+              <h4>Forecast</h4>
+              <div class = "card">
+                <div class = "card-content">
+                  <h4 id = "date-1"></h4>
+                  <img id = "icon-1"></img>
+                  <h5>Temp:<span id = "temp-1"></span>&deg; F </h5>
                 </div>
               </div>
-              <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+              <div class = "card">
+                <div class = "card-content">
+                  <h4 id = "date-2"></h4>
+                  <img id = "icon-2"></img>
+                  <h5>Temp:<span id = "temp-2"></span>&deg; F </h5>
+                </div>
+              </div>
+              <div class = "card">
+                <div class = "card-content">
+                  <h4 id = "date-3"></h4>
+                  <img id = "icon-3"></img>
+                  <h5>Temp:<span id = "temp-3"></span>&deg; F </h5>
+                </div>
               </div>
             </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+            </div>
           </div>
-
-          </section>
-        
-        <section class="col s12 m3">
-          <section class = "card-content" id = "timeCard">
-            <h5>Current Local Time: </h5><span class = "timeFonts" id = "currentTimeZone"> </span>
-            <h5>Current Time in Capital: </h5><span class = "timeFonts" id = "capitalTime"> </span>
-          </section>
-        </section>
-        <section class="col s12 m3">
-          <section class = "card-content" id = "population">
-            <h5>Current Local Time: </h5><span class = "timeFonts" id = "currentTimeZone"> </span>
-            <h5>Current Time in Capital: </h5><span class = "timeFonts" id = "capitalTime"> </span>
-          </section>
-        </section>
-
+        </div>
       
+      </div>
+      <section class="col s12 m3">
+        <div class = "card-content" id = "timeCard">
+          <h4>Current Local Time: </h4><span class = "timeFonts" id = "currentTimeZone"> </span>
+          <h4>Current Time in Capital: </h4><span class = "timeFonts" id = "capitalTime"> </span>
+        </div>
+      </section>
+      <section class="col s12 m3">
+        <div class = "card-content" >
+          <h5>Current Local Time: </h5><span class = "timeFonts" id = "currentTimeZone"> </span>
+          <h5>Current Time in Capital: </h5><span class = "timeFonts" id = "capitalTime"> </span>
+        </div>
+      </section>
     </section>
-
   </main>
+
+  <footer class="page-footer black">
+    <div class="footer-copyright">
+      <div class="container" style="margin-left: 20px">
+      © 2014 Copyright Text
+      <a id="wiki-link" class="grey-text text-lighten-4 right" href="#" target="_blank"></a>
+      </div>
+    </div>
+  </footer>
         
 
 

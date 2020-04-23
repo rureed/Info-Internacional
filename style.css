@@ -21,26 +21,33 @@ body {
     margin-right: 10px;
 }
 
-#pictures {
-    height: 100%;
+.carousel .carousel-item>img {
+    width: 290%;    
+    margin-left: -110%; 
+    margin-top: -50%
 }
 
 
 .card {
     border-radius: 8px;
-    background-color: rgba(202, 206, 178, 0.578);   
+    background-color: rgba(202, 206, 178, 0.578); 
+    margin: 15px;  
 }
 
 .card-content {
     padding: 5px 15px 15px 15px !important;
 }
+#weatherTime {
+    margin-bottom: 50px;
+}
 
 h1, h4, h5 {
-    font-weight: bold;
+    font-weight: bolder;
 }
 
 .timeFonts {
-    font-size: 18px;
+    font-size: 28px;
+    
 }
 
 .btn {
@@ -58,3 +65,9 @@ h1, h4, h5 {
     color: white;
     width: 300px; 
 }
+
+.page-footer {
+   
+    color: white;
+}
+

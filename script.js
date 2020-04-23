@@ -1,6 +1,5 @@
-$('.carousel').carousel({
-  
-});
+
+
  
 //When the page loads the screen should be clear of any "errors"
 $(window).on( "load", function() {
@@ -30,7 +29,7 @@ function getCountryInfo(country){
 	}
 }
 $.ajax(settings).done(function (response) {
-    console.log(response);
+    
   for (var i = 0; i < response.length; i++) {
     var countryMatch = (response[i].name).toLowerCase(); 
     if (country === countryMatch){
@@ -40,12 +39,16 @@ $.ajax(settings).done(function (response) {
       getPictures(capital);
       getWeather(capital);
       getForecast(capital);
+      wikiLink(capital);
     }
     }
 });
 }
 
-//searched for picture based on the capital
+
+
+
+//search for picture based on the capital
 function getPictures(capital){
     var queryURL = "https://api.unsplash.com/search/photos?query=" + capital + "&per_page=20&client_id=tLFvPdAvAFpRTR2LhyEwk38gT8ALPvluLPQTUjttXfc"
 
@@ -60,7 +63,7 @@ function getPictures(capital){
 
 //shows pictures in a carousel
 function showPictures(picList){
-  console.log(picList);
+
   var count = 1;
   for (var i = 0; i < 20; i++){
     var picWidth = picList[i].width;
@@ -68,7 +71,7 @@ function showPictures(picList){
     if(picWidth > picHeight){
       var picURL = picList[i].urls.regular;
       $("#pic-" + count).attr("src", picURL );
-      $("#pic-" + count).addClass("responsive-img");
+      //$("#pic-" + count).addClass("sizeIt");
       count++;
     }
   }
@@ -85,6 +88,7 @@ function getWeather(capital) {
   }).then(function(response){
     var timeZone = (response.timezone)/60/60;
       showWeather(response);
+      console.log(response);
       showTimes(timeZone);
       
       
@@ -94,11 +98,9 @@ function getWeather(capital) {
 }
 $("#errorMadeArea").hide();   
 
-
+//show current weather in capital
 function showWeather(response){
   $("#capitalCity").text(response.name)
-  var currentDate = moment().format("MM/DD/YY"); 
-  $("#date").text("(" + currentDate + ")");
   var icon = response.weather[0].icon;
   var iconURL = "https://openweathermap.org/img/w/" + icon + ".png";
   $("#mainIcon").attr("src", iconURL);
@@ -106,6 +108,7 @@ function showWeather(response){
   $("#temp").text(mainTemp);   
 }
 
+//get 3 day forecast for capital
 function getForecast(capital){
   var forecastQueryURL= "https://api.openweathermap.org/data/2.5/forecast?q=" + capital + "&APPID=62fca606199df2afea0a32e25faffdc5";;
     $.ajax({
@@ -114,7 +117,7 @@ function getForecast(capital){
     }).then(showForecast)
 }
 
-
+//show 3 day forecast in a modal
 function showForecast(forecastResponse){
   var list = forecastResponse.list;
   var count = 1;   
@@ -134,12 +137,12 @@ function showForecast(forecastResponse){
   }
 }
 
-
-//
+//show time in capital city
 function showTimes(timeZone){
   var capitalTime = moment().utcOffset(timeZone).format('h:mm A ' + ' / ' + 'MMMM Do');
+  var weatherDate = moment().utcOffset(timeZone).format('MMMM Do');
+  $("#date").text(weatherDate);
   $("#capitalTime").text(capitalTime);
-
   var capHrs = moment().utcOffset(timeZone).format('h');
   var currentHrs= moment().format('h');
   console.log(capHrs);
@@ -149,5 +152,11 @@ function showTimes(timeZone){
 
 }
 
+function wikiLink (capital){
+  var wikiURL = "https://en.wikipedia.org/wiki/" + capital;
+  $("#wiki-link").text("Link for the " + capital + " " + "Wikipedia Page");
+  $("#wiki-link").attr("href", wikiURL);
+}
 
+$('.carousel').carousel().height(500);
 $('#modal1').modal();
