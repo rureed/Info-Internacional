@@ -1,10 +1,10 @@
 body {
-    background-color: rgb(153, 174, 192);
+    background-color: rgba(110, 144, 189, 0.788);
+    background-image: linear-gradient(rgba(109, 109, 109, 0.5), rgba(78, 78, 78, 0.5)), url("map.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-
-
-
-
 
 .container {
     width: 100%;
@@ -28,7 +28,7 @@ body {
 
 .card {
     border-radius: 8px;
-    background-color: bisque;   
+    background-color: rgba(202, 206, 178, 0.578);   
 }
 
 .card-content {

@@ -9,6 +9,7 @@
     <title>Capital Cities</title>
 </head>
 <body>
+
     <nav>
       <div class="nav-wrapper">
         <a href="#" class="brand-logo">Capital Cities</a>
@@ -20,7 +21,7 @@
 
     <main class = "container">
     <header class = "header">   
-            <h5 id = "capital" class = "center-align"></h5>
+            <h3 id = "capital" class = "center-align"></h3>
     </header> 
 
     <section id = "searchSection">
@@ -39,10 +40,10 @@
   
   
 
-    <section class="row">
+    <section class="row ">
 
-      <section class="col s12 m10" id = "pictures">
-        
+      <section class="col s12 m12" id = "pictures">
+        <section class = "card">
               <div class = "carousel">
                   <a class="carousel-item" href="#one!"><img id = "pic-1"></a>
                   <a class="carousel-item" href="#two!"><img id = "pic-2"></a>
@@ -56,20 +57,22 @@
                   <a class="carousel-item" href="#ten!"><img id = "pic-10"></a>
                   <a class="carousel-item" href="#eleven!"><img id = "pic-11"></a>
               </div>
+          </section>
       </section>
     </section>
 
-    <section class = "row center-align">
+    <section class = "row card center-align" id = "weatherTime">
+      
+        <section class="col s12 m3">
+          <section class = "card-content" id = "weatherCard">
+              <h5>Current Weather in Capital City:</h5>
+          </section>
+            
+          <div class = "card-content">
+              <h4><span id = "date"></span></h4><img id="mainIcon" src="">
+              <p class = "card-text"><h5>Temp: <span id = "temp"></span>&deg; F</h5></p>                   
+          </div>
 
-      <section class="col s12 m3">
-        <section class = "card center-align" id = "weatherCard">
-          <div class = "card-content">
-            <h5>Current Weather in Capital City:</h5>
-          </div>
-          <div class = "card-content">
-            <h4><span id = "date"></span></h4><img id="mainIcon" src="">
-            <p class = "card-text"><h5>Temp: <span id = "temp"></span>&deg; F</h5></p>                   
-          </div>
           <div class = "card-content">
             <button data-target="modal1" class="btn modal-trigger">3-Day Forecast</button>
             <div id="modal1" class="modal">
@@ -96,25 +99,29 @@
                     <h5>Temp:<span id = "temp-3"></span>&deg; F </h5>
                   </div>
                 </div>
-                
               </div>
               <div class="modal-footer">
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
               </div>
             </div>
           </div>
+
+          </section>
+        
+        <section class="col s12 m3">
+          <section class = "card-content" id = "timeCard">
+            <h5>Current Local Time: </h5><span class = "timeFonts" id = "currentTimeZone"> </span>
+            <h5>Current Time in Capital: </h5><span class = "timeFonts" id = "capitalTime"> </span>
+          </section>
         </section>
-      </section>
+        <section class="col s12 m3">
+          <section class = "card-content" id = "population">
+            <h5>Current Local Time: </h5><span class = "timeFonts" id = "currentTimeZone"> </span>
+            <h5>Current Time in Capital: </h5><span class = "timeFonts" id = "capitalTime"> </span>
+          </section>
+        </section>
+
       
-      <section class="col s12 m3">
-        <section class = "card" id = "timeCard">
-          <div class = "card-content">
-              <h5>Current Local Time: </h5><span class = "timeFonts" id = "currentTimeZone"> </span>
-              <h5>Current Time in Capital: </h5><span class = "timeFonts" id = "capitalTime"> </span>
-          </div>
-        </section>
-      </section>
-    
     </section>
 
   </main>
