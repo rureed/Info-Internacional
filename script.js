@@ -62,6 +62,7 @@ function getPictures(capital){
 
 //shows pictures in a carousel
 function showPictures(picList){
+  $("#carousel-container").empty();
   for (var i = 0; i < 20; i++){
     var picWidth = picList[i].width;
     var picHeight = picList[i].height;
