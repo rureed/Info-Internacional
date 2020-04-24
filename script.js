@@ -11,6 +11,7 @@ $("#search").on("click", function(event){
   event.preventDefault();
   var country = $("#countryInput").val().trim().toLowerCase();
   if (country) {
+
         $("#countryInput").val("");
     } 
     getCountryInfo(country);
@@ -75,7 +76,7 @@ function showPictures(picList){
 
 //openweathermap API to get current weather for capital city
 function getWeather(capital) { 
-  $("#errorMadeArea").hide();   
+   
   var currentQueryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + capital + "&APPID=62fca606199df2afea0a32e25faffdc5";
 
   $.ajax({
@@ -86,14 +87,13 @@ function getWeather(capital) {
       showWeather(response);
       console.log(response);
       showTimes(timeZone);
-      
-      
   });
 }
-$("#errorMadeArea").hide();   
+  
 
 //show current weather in capital
 function showWeather(response){
+  $("#icon-div").removeClass("hide");
   $("#capitalCity").text(response.name)
   var icon = response.weather[0].icon;
   var iconURL = "https://openweathermap.org/img/w/" + icon + ".png";
@@ -115,7 +115,7 @@ function getForecast(capital){
 function showForecast(forecastResponse){
   var list = forecastResponse.list;
   var count = 1;   
-  for (var i = 0; i < list.length; i++){
+  for (var i = 8; i < list.length; i++){
  
     if (list[i].dt_txt.includes("15:00:00")) {
         
