@@ -114,20 +114,19 @@ function getForecast(capital){
 //show 3 day forecast in a modal
 function showForecast(forecastResponse){
   var list = forecastResponse.list;
-  var count = 1;   
-  for (var i = 8; i < list.length; i++){
- 
-    if (list[i].dt_txt.includes("15:00:00")) {
+  var count = 1;
+  var x = 7
+  for (var i = 0; i < 3; i++){
         
-        $("#date-"+ count).text(new Date(list[i].dt_txt).toLocaleDateString());
+        $("#date-"+ count).text(new Date(list[x].dt_txt).toLocaleDateString());
         
-        var iconURL = "https://openweathermap.org/img/w/" + list[i].weather[0].icon + ".png";
+        var iconURL = "https://openweathermap.org/img/w/" + list[x].weather[0].icon + ".png";
         $("#icon-"+ count).attr("src", iconURL);
 
-        $("#temp-"+ count).text(((list[i].main.temp- 273.15) * 1.80 +32).toFixed(0));
+        $("#temp-"+ count).text(((list[x].main.temp- 273.15) * 1.80 +32).toFixed(0));
         
         count++; 
-    }
+    	var x = x + 8
   }
 }
 
