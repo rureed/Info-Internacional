@@ -61,18 +61,16 @@ function getPictures(capital){
 
 //shows pictures in a carousel
 function showPictures(picList){
-
-  var count = 1;
   for (var i = 0; i < 20; i++){
     var picWidth = picList[i].width;
     var picHeight = picList[i].height;
     if(picWidth > picHeight){
       var picURL = picList[i].urls.regular;
-      $("#pic-" + count).attr("src", picURL );
-      //$("#pic-" + count).addClass("sizeIt");
-      count++;
+      var newImage = $("<a class = 'carousel-item'>").append($("<img>").attr("src", picURL));
+      $(".carousel").append(newImage);
     }
   }
+  $('.carousel').carousel();
 }
 
 //openweathermap API to get current weather for capital city
@@ -165,5 +163,5 @@ function wikiLink (capital){
   $("#wiki-link").attr("href", wikiURL);
 }
 
-$('.carousel').carousel();
+
 $('#modal1').modal();
