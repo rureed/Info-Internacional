@@ -46,8 +46,6 @@ $.ajax(settings).done(function (response) {
 }
 
 
-
-
 //search for picture based on the capital
 function getPictures(capital){
     var queryURL = "https://api.unsplash.com/search/photos?query=" + capital + "&per_page=20&client_id=tLFvPdAvAFpRTR2LhyEwk38gT8ALPvluLPQTUjttXfc"
@@ -92,8 +90,6 @@ function getWeather(capital) {
       showTimes(timeZone);
       
       
-  }).catch(function(){
-      $("#errorMadeArea").show();
   });
 }
 $("#errorMadeArea").hide();   
@@ -139,18 +135,29 @@ function showForecast(forecastResponse){
 
 //show time in capital city
 function showTimes(timeZone){
+  var currentHrs= moment().utcOffset()/60;
+  var timeDif = timeZone-currentHrs;
+    if (timeDif === 1) {
+      $("#timeDif").text((Math.abs(timeDif)) + " hour ahead");
+    } else if (timeDif === -1) {
+      $("#timeDif").text((Math.abs(timeDif)) + " hour behind");
+    } else if (timeDif === 0){
+      $("#timeDif").text("You are in the same time zone");
+    } else if (timeDif > 0){
+        $("#timeDif").text((Math.abs(timeDif)) + " hours ahead");
+    } 
   var capitalTime = moment().utcOffset(timeZone).format('h:mm A ' + ' / ' + 'MMMM Do');
   var weatherDate = moment().utcOffset(timeZone).format('MMMM Do');
   $("#date").text(weatherDate);
   $("#capitalTime").text(capitalTime);
-  var capHrs = moment().utcOffset(timeZone).format('h');
-  var currentHrs= moment().format('h');
-  console.log(capHrs);
-  console.log(currentHrs);
-  $("#dateTime").text(moment().format('MMMM Do YYYY, h:mm:ss a'));
-  $("#currentTimeZone").text(moment().format('LT'));
 
 }
+
+function currentTime() {
+  $("#dateTime").text(moment().format('MMMM Do YYYY, h:mm:ss a'));
+}
+
+setInterval(currentTime,1000)
 
 function wikiLink (capital){
   var wikiURL = "https://en.wikipedia.org/wiki/" + capital;
@@ -158,5 +165,5 @@ function wikiLink (capital){
   $("#wiki-link").attr("href", wikiURL);
 }
 
-$('.carousel').carousel().height(500);
+$('.carousel').carousel();
 $('#modal1').modal();

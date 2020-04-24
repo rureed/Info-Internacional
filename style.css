@@ -13,6 +13,9 @@ body {
     background-color: rgba(86, 150, 111, 0.753);
 }
 
+::placeholder {
+    color: black;
+}
 .brand-logo {
     margin-left: 10px;
 }
@@ -25,13 +28,19 @@ body {
     width: 290%;    
     margin-left: -110%; 
     margin-top: -50%
-}
 
+}
 
 .card {
     border-radius: 8px;
     background-color: rgba(202, 206, 178, 0.578); 
     margin: 15px;  
+    padding-top: 10px;
+    
+}
+
+#pictures {
+    padding: 20px;
 }
 
 .card-content {
@@ -41,7 +50,7 @@ body {
     margin-bottom: 50px;
 }
 
-h1, h4, h5 {
+h1, h3, h4, h5 {
     font-weight: bolder;
 }
 
@@ -67,7 +76,16 @@ h1, h4, h5 {
 }
 
 .page-footer {
-   
     color: white;
 }
+
+
+#forecastBtn {
+    width: 250px;
+    height: 50px;
+    font-size: 18px;
+    
+}
+
+
 
