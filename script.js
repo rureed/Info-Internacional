@@ -1,11 +1,4 @@
 
-
- 
-//When the page loads the screen should be clear of any "errors"
-$(window).on( "load", function() {
- 
-});
-
 //get the capital of the country the user types in
 $("#search").on("click", function(event){
   event.preventDefault();
@@ -62,6 +55,7 @@ function getPictures(capital){
 
 //shows pictures in a carousel
 function showPictures(picList){
+  $(".carousel").empty();
   for (var i = 0; i < 20; i++){
     var picWidth = picList[i].width;
     var picHeight = picList[i].height;
@@ -85,7 +79,6 @@ function getWeather(capital) {
   }).then(function(response){
     var timeZone = (response.timezone)/60/60;
       showWeather(response);
-      console.log(response);
       showTimes(timeZone);
   });
 }
@@ -114,20 +107,19 @@ function getForecast(capital){
 //show 3 day forecast in a modal
 function showForecast(forecastResponse){
   var list = forecastResponse.list;
-  var count = 1;   
-  for (var i = 8; i < list.length; i++){
- 
-    if (list[i].dt_txt.includes("15:00:00")) {
+  var count = 1;
+  var x = 7
+  for (var i = 0; i < 3; i++){
         
-        $("#date-"+ count).text(new Date(list[i].dt_txt).toLocaleDateString());
+        $("#date-"+ count).text(new Date(list[x].dt_txt).toLocaleDateString());
         
-        var iconURL = "https://openweathermap.org/img/w/" + list[i].weather[0].icon + ".png";
+        var iconURL = "https://openweathermap.org/img/w/" + list[x].weather[0].icon + ".png";
         $("#icon-"+ count).attr("src", iconURL);
 
-        $("#temp-"+ count).text(((list[i].main.temp- 273.15) * 1.80 +32).toFixed(0));
+        $("#temp-"+ count).text(((list[x].main.temp- 273.15) * 1.80 +32).toFixed(0));
         
         count++; 
-    }
+    	var x = x + 8
   }
 }
 
@@ -146,7 +138,6 @@ function showTimes(timeZone){
     } 
   var capitalTime = moment().utcOffset(timeZone).format('h:mm A ' + ' / ' + 'MMMM Do');
   var weatherDate = moment().utcOffset(timeZone).format('MMMM Do');
-  $("#date").text(weatherDate);
   $("#capitalTime").text(capitalTime);
 
 }

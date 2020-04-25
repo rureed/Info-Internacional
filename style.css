@@ -17,6 +17,12 @@ body {
     color: black;
     font-weight: bold;
 }
+
+#countryInput[type="text"] {
+    font-size: 24px;
+    font-weight: bold; 
+}
+
 .brand-logo {
     margin-left: 10px;
 }
@@ -90,6 +96,4 @@ h1, h3, h4, h5 {
 #wiki-link {
     text-decoration: underline;
 }
-
-
 
