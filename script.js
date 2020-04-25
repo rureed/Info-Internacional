@@ -86,7 +86,6 @@ function getWeather(capital) {
   }).then(function(response){
     var timeZone = (response.timezone)/60/60;
       showWeather(response);
-      console.log(response);
       showTimes(timeZone);
   });
 }
@@ -146,7 +145,6 @@ function showTimes(timeZone){
     } 
   var capitalTime = moment().utcOffset(timeZone).format('h:mm A ' + ' / ' + 'MMMM Do');
   var weatherDate = moment().utcOffset(timeZone).format('MMMM Do');
-  $("#date").text(weatherDate);
   $("#capitalTime").text(capitalTime);
 
 }
