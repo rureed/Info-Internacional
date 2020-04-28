@@ -29,6 +29,9 @@ $.ajax(settings).done(function (response) {
     if (country === countryMatch){
       var capital = response[i].capital;
       $("#capital").text(capital + ", " + response[i].name);
+      if (capital === "rome"){
+        capital = capital + ",it"
+    }
 
       getPictures(capital);
       getWeather(capital);
