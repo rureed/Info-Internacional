@@ -140,7 +140,7 @@ function showTimes(timeZone){
         $("#timeDif").text((Math.abs(timeDif)) + " hours ahead");
     } 
   var capitalTime = moment().utcOffset(timeZone).format('h:mm A ' + ' / ' + 'MMMM Do');
-  var weatherDate = moment().utcOffset(timeZone).format('MMMM Do');
+ 
   $("#capitalTime").text(capitalTime);
 
 }
